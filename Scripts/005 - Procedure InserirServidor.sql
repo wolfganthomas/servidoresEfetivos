@@ -2,7 +2,8 @@
 /*=====================================================*/
 /* -- Procedure utilizada para cadastro de servidor	 --*/
 /*=====================================================*/
-
+USE SERVIDOR_EFETIVO
+GO
 CREATE PROCEDURE InserirServidor
 	@CD_SIAPE INT,
 	@NM_SERVIDOR VARCHAR(100),

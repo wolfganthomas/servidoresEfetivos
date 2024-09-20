@@ -1,7 +1,8 @@
 /*=====================================================*/
 /* -- Procedure utilizada para inserção de auditoria --*/
 /*=====================================================*/
-
+USE SERVIDOR_EFETIVO
+GO
 CREATE PROCEDURE InserirAuditoria
 	@TP_OPERACAO CHAR(1),
 	@NM_TABELA_OPERACAO VARCHAR(100),
@@ -65,6 +66,6 @@ GO
 
 SELECT * FROM SERVIDOR
 
-INSERT INTO SERVIDOR VALUES (1,'SERVIDOR TESTE 2','M','19940101','11111111111',1)
+INSERT INTO SERVIDOR VALUES (1,'SERVIDOR TESTE 3','M','19940101','11111111111',1)
 
 SELECT * FROM AUDITORIA

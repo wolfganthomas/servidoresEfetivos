@@ -87,8 +87,24 @@ BEGIN
 							)
 		END;
 
+	IF @TP_OPERACAO='D'
+		BEGIN	
+			SET @DS_OPERACAO=(
+							SELECT 
+								CONCAT('Exclusão física de cadastro de servidor. Dados:'
+								,'; ID_SERVIDOR: ',D.ID_SERVIDOR
+								,'; CD_SIAPE: ',D.CD_SIAPE
+								,'; NM_SERVIDOR: ',D.NM_SERVIDOR
+								,'; TP_SEXO: ',D.TP_SEXO
+								,'; DT_NASCIMENTO: ',D.DT_NASCIMENTO
+								,'; NR_CPF: ',D.NR_CPF
+								,'; FG_REGISTRO_ATIVO: ',D.FG_REGISTRO_ATIVO
+								)
+							FROM DELETED D
+						)
+
+			
+		END;
 	EXEC InserirAuditoria @TP_OPERACAO,'SERVIDOR',@DS_OPERACAO
 END
 GO
-
-

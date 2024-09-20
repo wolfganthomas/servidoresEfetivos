@@ -20,6 +20,7 @@ GO
 
 
 CREATE TRIGGER TG_AUD_SERVIDOR
+--ALTER TRIGGER TG_AUD_SERVIDOR
    ON  SERVIDOR
    AFTER INSERT,DELETE,UPDATE
 AS 
@@ -39,25 +40,31 @@ BEGIN
                                    ELSE 'D'                                     -- DELETE
        END;
 	IF @TP_OPERACAO='I'
-		
-	   SET @DS_OPERACAO=(
+		BEGIN	
+			SET @DS_OPERACAO=(
 							SELECT 
 								CONCAT('Cadastro de servidor realizado. Dados:'
-								,' ID_SERVIDOR: ',I.ID_SERVIDOR
-								,' CD_SIAPE: ',I.CD_SIAPE
-								,' NM_SERVIDOR: ',I.NM_SERVIDOR
-								,' TP_SEXO: ',I.TP_SEXO
-								,' DT_NASCIMENTO: ',I.DT_NASCIMENTO
-								,' NR_CPF: ',I.NR_CPF
-								,' FG_REGISTRO_ATIVO: ',I.FG_REGISTRO_ATIVO
+								,'; ID_SERVIDOR: ',I.ID_SERVIDOR
+								,'; CD_SIAPE: ',I.CD_SIAPE
+								,'; NM_SERVIDOR: ',I.NM_SERVIDOR
+								,'; TP_SEXO: ',I.TP_SEXO
+								,'; DT_NASCIMENTO: ',I.DT_NASCIMENTO
+								,'; NR_CPF: ',I.NR_CPF
+								,'; FG_REGISTRO_ATIVO: ',I.FG_REGISTRO_ATIVO
 								)
 							FROM INSERTED I
 						)
 
-         
-
+			EXEC InserirAuditoria @TP_OPERACAO,'SERVIDOR',@DS_OPERACAO
+		END;
 
 END
 GO
 
--- exec InserirAuditoria @tp_operacao='U',@nm_tabela_operacao='TESTE',@ds_operacao='Testando procedure de auditoria'
+
+
+SELECT * FROM SERVIDOR
+
+INSERT INTO SERVIDOR VALUES (1,'SERVIDOR TESTE 2','M','19940101','11111111111',1)
+
+SELECT * FROM AUDITORIA

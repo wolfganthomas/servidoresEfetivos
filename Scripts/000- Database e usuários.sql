@@ -1,7 +1,7 @@
 /*========================================================================*/
-/*  Autor do Script: Thomas Wolfgan						                            */
-/*  Data de criação: 21/09/2024				                                    */
-/*  Finalidade do script:											                            */
+/*  Autor do Script: Thomas Wolfgan			                  */
+/*  Data de criação: 21/09/2024				                  */
+/*  Finalidade do script:				                  */
 /*     Criar database e usuários que serão utilizados                     */ 
 /*  Sumário do Script:                                                    */
 /*     1. Cria a database SERVIDOR_EFETIVO                                */

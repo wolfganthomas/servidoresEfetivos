@@ -1,3 +1,17 @@
+/*========================================================================*/
+/*  Autor do Script: Thomas Wolfgan			                  */
+/*  Data de criação: 21/09/2024				                  */
+/*  Finalidade do script:						  */
+/*     Criar tabelas do modelo de dados             					  */ 
+/*  Sumário do Script:                                                    */
+/*     1. Cria a tabela AUDITORIA                                         */
+/*     2. Cria a tabela CARGO                                             */
+/*     3. Cria a tabela LOTACAO_SERVIDOR                                  */
+/*     4. Cria a tabela SERVIDOR                                          */
+/*     5. Cria a tabela SETOR                                             */
+/*========================================================================*/
+
+
 USE SERVIDOR_EFETIVO
 go
 
@@ -181,15 +195,6 @@ EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description',
    'schema', 'DBO', 'table', 'LOTACAO_SERVIDOR', 'column', 'FG_REGISTRO_ATIVO'
 go
 
-CREATE UNIQUE NONCLUSTERED INDEX IX_LOTACAOSERVIDOR_IDSERVIDOR ON DBO.LOTACAO_SERVIDOR 
-	(ID_SERVIDOR ASC)
-	WHERE FG_LOTACAO_ATIVA = 1
-go
-
-
-CREATE NONCLUSTERED INDEX IX_LOTACAOSERVIDOR_IDSETOR ON DBO.LOTACAO_SERVIDOR 
-(ID_SETOR ASC)
-go
 
 
 
@@ -402,15 +407,7 @@ EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description',
    'schema', 'DBO', 'table', 'VINCULO_SERVIDOR', 'column', 'FG_REGISTRO_ATIVO'
 go
 
-CREATE UNIQUE NONCLUSTERED INDEX IX_VINCULOSERVIDOR_IDSERVIDOR ON DBO.VINCULO_SERVIDOR 
-	(ID_SERVIDOR ASC)
-   WHERE FG_VINCULO_ATIVO=1
-go
 
-
-CREATE NONCLUSTERED INDEX IX_VINCULOSERVIDOR_IDCARGO ON DBO.VINCULO_SERVIDOR 
-(ID_CARGO ASC)
-go
 
 ALTER TABLE DBO.LOTACAO_SERVIDOR
    ADD CONSTRAINT FK_LOTACAOSERVIDOR_SERVIDOR FOREIGN KEY (ID_SERVIDOR)

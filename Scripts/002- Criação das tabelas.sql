@@ -1,9 +1,9 @@
 /*========================================================================*/
 /*  Autor do Script: Thomas Wolfgan			                  */
-/*  Data de criaÁ„o: 21/09/2024				                  */
+/*  Data de cria√ß√£o: 21/09/2024				                  */
 /*  Finalidade do script:						  */
-/*     Criar tabelas do modelo de dados             					  */ 
-/*  Sum·rio do Script:                                                    */
+/*     Criar tabelas do modelo de dados        				  */ 
+/*  Sum√°rio do Script:                                                    */
 /*     1. Cria a tabela AUDITORIA                                         */
 /*     2. Cria a tabela CARGO                                             */
 /*     3. Cria a tabela LOTACAO_SERVIDOR                                  */
@@ -32,7 +32,7 @@ ALTER TABLE AUDITORIA
 go
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description',  
-   'Registra as alteraÁıes realizadas nas tabelas SERVIDOR, LOTACAO_SERVIDOR e VINCULO_SERVIDOR', 
+   'Registra as altera√ß√µes realizadas nas tabelas SERVIDOR, LOTACAO_SERVIDOR e VINCULO_SERVIDOR', 
    'schema', 'DBO', 'table', 'AUDITORIA'
 go
 
@@ -46,8 +46,8 @@ go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Indica o tipo de alteraÁ„o que gerou o registro de log.
-   Valores posssÌveis:
+   'Indica o tipo de altera√ß√£o que gerou o registro de log.
+   Valores posss√≠veis:
    
    I - Insert
    U - Update
@@ -57,26 +57,26 @@ go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Data e hora em que a operaÁ„o foi realizada.',
+   'Data e hora em que a opera√ß√£o foi realizada.',
    'schema', 'DBO', 'table', 'AUDITORIA', 'column', 'DT_OPERACAO'
 go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Identifica o usu·rio de banco de dados utilizado para realizar a operaÁ„o.',
+   'Identifica o usu√°rio de banco de dados utilizado para realizar a opera√ß√£o.',
    'schema', 'DBO', 'table', 'AUDITORIA', 'column', 'NM_USUARIO_OPERACAO'
 go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Nome da tabela sobre a qual foi realizada a alteraÁ„o.',
+   'Nome da tabela sobre a qual foi realizada a altera√ß√£o.',
    'schema', 'DBO', 'table', 'AUDITORIA', 'column', 'NM_TABELA_OPERACAO'
 go
 
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'DescriÁ„o da alteraÁ„o realizada.',
+   'Descri√ß√£o da altera√ß√£o realizada.',
    'schema', 'DBO', 'table', 'AUDITORIA', 'column', 'DS_OPERACAO'
 go
 
@@ -112,8 +112,8 @@ go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Flag que indica se o registro est· excluÌdo logicamente ou n„o.
-   Valores possÌveis:
+   'Flag que indica se o registro est√° exclu√≠do logicamente ou n√£o.
+   Valores poss√≠veis:
    
    1 - Ativo
    0 - Inativo',
@@ -137,14 +137,14 @@ go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description',  
-   'Registra a lotaÁ„o dos servidores, ou seja, o vÌnculo entre servidor e lotaÁ„o.', 
+   'Registra a lota√ß√£o dos servidores, ou seja, o v√≠nculo entre servidor e lota√ß√£o.', 
    'schema', 'DBO', 'table', 'LOTACAO_SERVIDOR'
 go
 
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Chave prim·ria (artificial) da tabela de vÌnculo de servidores. Gerada automaticamente por meio de identity.',
+   'Chave prim√°ria (artificial) da tabela de v√≠nculo de servidores. Gerada automaticamente por meio de identity.',
    'schema', 'DBO', 'table', 'LOTACAO_SERVIDOR', 'column', 'ID_LOTACAO_SERVIDOR'
 go
 
@@ -163,32 +163,32 @@ go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Data de inÌcio da lotaÁ„o do servidor no setor.',
+   'Data de in√≠cio da lota√ß√£o do servidor no setor.',
    'schema', 'DBO', 'table', 'LOTACAO_SERVIDOR', 'column', 'DT_INICIO_LOTACAO'
 go
 
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Data final da lotaÁ„o do servidor no setor.',
+   'Data final da lota√ß√£o do servidor no setor.',
    'schema', 'DBO', 'table', 'LOTACAO_SERVIDOR', 'column', 'DT_FIM_LOTACAO'
 go
 
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Flag que indica se essa È a lotaÁ„o ativa (atual) do servidor.
-   Valores possÌveis:
+   'Flag que indica se essa √© a lota√ß√£o ativa (atual) do servidor.
+   Valores poss√≠veis:
    1 - Sim
-   0 - N„o',
+   0 - N√£o',
    'schema', 'DBO', 'table', 'LOTACAO_SERVIDOR', 'column', 'FG_LOTACAO_ATIVA'
 go
 
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Flag que indica se a lotaÁ„o est· ativa ou inativa.
-   Valores possÌveis:
+   'Flag que indica se a lota√ß√£o est√° ativa ou inativa.
+   Valores poss√≠veis:
    
    1 - Ativo
    0 - Inativo',
@@ -230,7 +230,7 @@ go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'CÛdigo SIAPE do servidor.',
+   'C√≥digo SIAPE do servidor.',
    'schema', 'DBO', 'table', 'SERVIDOR', 'column', 'CD_SIAPE'
 go
 
@@ -246,7 +246,7 @@ go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Idica o sexo do servidor.  Valores possÌveis: 
+   'Idica o sexo do servidor.  Valores poss√≠veis: 
    M - Masculino 
    F- Feminino',
    'schema', 'DBO', 'table', 'SERVIDOR', 'column', 'TP_SEXO'
@@ -262,15 +262,15 @@ go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'N˙mero do CPF (Cadastro Nacional de Pessoa FÌsica) do servidor.',
+   'N√∫mero do CPF (Cadastro Nacional de Pessoa F√≠sica) do servidor.',
    'schema', 'DBO', 'table', 'SERVIDOR', 'column', 'NR_CPF'
 go
 
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Flag que indica se o registro est· excluÌdo logicamente ou n„o.
-   Valores possÌveis:
+   'Flag que indica se o registro est√° exclu√≠do logicamente ou n√£o.
+   Valores poss√≠veis:
    
    1 - Ativo
    0 - Inativo',
@@ -290,7 +290,7 @@ go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description',  
-   'Armazena os setores da instituiÁ„o.', 
+   'Armazena os setores da institui√ß√£o.', 
    'schema', 'DBO', 'table', 'SETOR'
 go
 
@@ -321,8 +321,8 @@ go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Flag que indica se o registro est· excluÌdo logicamente ou n„o.
-   Valores possÌveis:
+   'Flag que indica se o registro est√° exclu√≠do logicamente ou n√£o.
+   Valores poss√≠veis:
    
    1 - Ativo
    0 - Inativo',
@@ -345,14 +345,14 @@ go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description',  
-   'Registra a relaÁ„o entre servidores e cargos.', 
+   'Registra a rela√ß√£o entre servidores e cargos.', 
    'schema', 'DBO', 'table', 'VINCULO_SERVIDOR'
 go
 
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Chave prim·ria (artificial) da tabela de vÌnculo de servidores. Gerada automaticamente por meio de identity.',
+   'Chave prim√°ria (artificial) da tabela de v√≠nculo de servidores. Gerada automaticamente por meio de identity.',
    'schema', 'DBO', 'table', 'VINCULO_SERVIDOR', 'column', 'ID_VINCULO_SERVIDOR'
 go
 
@@ -374,7 +374,7 @@ go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Data em que o vÌnculo do servidor no cargo atual foi iniciado.',
+   'Data em que o v√≠nculo do servidor no cargo atual foi iniciado.',
    'schema', 'DBO', 'table', 'VINCULO_SERVIDOR', 'column', 'DT_INICIO_VINCULO'
 go
 
@@ -382,25 +382,25 @@ go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Data em que o vÌnculo do servidor no cargo atual se encerrou.',
+   'Data em que o v√≠nculo do servidor no cargo atual se encerrou.',
    'schema', 'DBO', 'table', 'VINCULO_SERVIDOR', 'column', 'DT_FIM_VINCULO'
 go
 
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Flag que indica se esse È o vÌnculo ativo (atual) do servidor.
-   Valores possÌveis:
+   'Flag que indica se esse √© o v√≠nculo ativo (atual) do servidor.
+   Valores poss√≠veis:
    1 - Sim
-   0 - N„o',
+   0 - N√£o',
    'schema', 'DBO', 'table', 'VINCULO_SERVIDOR', 'column', 'FG_VINCULO_ATIVO'
 go
 
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Flag que indica se o vÌnculo est· ativo ou inativo.
-   Valores possÌveis:
+   'Flag que indica se o v√≠nculo est√° ativo ou inativo.
+   Valores poss√≠veis:
    
    1 - Ativo
    0 - Inativo',

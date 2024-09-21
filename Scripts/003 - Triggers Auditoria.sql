@@ -233,8 +233,119 @@ END
 GO
 
 
-SELECT * FROM LOTACAO_SERVIDOR
+SELECT * FROM VINCULO_SERVIDOR
 GO
 SELECT * FROM AUDITORIA
 
-INSERT INTO LOTACAO_SERVIDOR VALUES (1,
+
+/*=====================================================*/
+/* -- Trigger auditoria tabela VINCULO_SERVIDOR		 --*/
+/*=====================================================*/
+
+IF EXISTS(SELECT 1 FROM SYS.triggers WHERE NAME='TG_AUD_VINCULOSERVIDOR')
+	DROP TRIGGER TG_AUD_VINCULOSERVIDOR
+GO
+
+CREATE TRIGGER TG_AUD_VINCULOSERVIDOR
+   ON  VINCULO_SERVIDOR
+   AFTER INSERT,DELETE,UPDATE
+AS 
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	DECLARE @TP_OPERACAO CHAR(1)='I',
+			@DS_OPERACAO VARCHAR(1000);
+
+	
+
+    -- Identificar a operação realizada
+     IF  (EXISTS(SELECT 1 FROM DELETED))
+          SET @TP_OPERACAO = CASE
+                                   WHEN EXISTS(SELECT * FROM INSERTED) THEN 'U' -- UPDATE
+                                   ELSE 'D'                                     -- DELETE
+       END;
+	IF @TP_OPERACAO='I'
+		BEGIN	
+			SET @DS_OPERACAO=(
+							SELECT 
+								CONCAT('Cadastro de vinculo para servidor. Dados:'
+								,'; ID_SERVIDOR: ',I.ID_SERVIDOR
+								,'; NM_SERVIDOR: ',S.NM_SERVIDOR
+								,'; ID_CARGO: ',I.ID_CARGO
+								,'; NM_CARGO: ',C.NM_CARGO
+								,'; DT_INICIO_VINCULO: ',I.DT_INICIO_VINCULO
+								,'; DT_FIM_VINCULO: ',I.DT_FIM_VINCULO
+								,'; FG_VINCULO_ATIVO: ',I.FG_VINCULO_ATIVO
+								,'; FG_REGISTRO_ATIVO: ',I.FG_REGISTRO_ATIVO
+								)
+							FROM INSERTED I
+							INNER JOIN SERVIDOR S ON S.ID_SERVIDOR=I.ID_SERVIDOR
+							INNER JOIN CARGO C ON C.ID_CARGO=I.ID_CARGO
+						)
+
+			
+		END;
+
+	IF @TP_OPERACAO='U'
+		BEGIN
+			SET @DS_OPERACAO=(CONCAT(	
+										'Alteração no vinculo de servidor. ** Dados antes a alteração:'
+										,(SELECT CONCAT(
+												'; ID_SERVIDOR: ',D.ID_SERVIDOR
+												,'; NM_SERVIDOR: ',S.NM_SERVIDOR
+												,'; ID_CARGO: ',D.ID_CARGO
+												,'; NM_CARGO: ',C.NM_CARGO
+												,'; DT_INICIO_VINCULO: ',D.DT_INICIO_VINCULO
+												,'; DT_FIM_VINCULO: ',D.DT_FIM_VINCULO
+												,'; FG_VINCULO_ATIVO: ',D.FG_VINCULO_ATIVO
+												,'; FG_REGISTRO_ATIVO: ',D.FG_REGISTRO_ATIVO
+												)
+											FROM DELETED D
+											INNER JOIN SERVIDOR S ON S.ID_SERVIDOR=D.ID_SERVIDOR
+											INNER JOIN CARGO C ON C.ID_CARGO=D.ID_CARGO
+											)
+										,'** Dados após a alteração:'
+										,(SELECT CONCAT(
+												'; ID_SERVIDOR: ',I.ID_SERVIDOR
+												,'; NM_SERVIDOR: ',S.NM_SERVIDOR
+												,'; ID_CARGO: ',I.ID_CARGO
+												,'; NM_CARGO: ',C.NM_CARGO
+												,'; DT_INICIO_VINCULO: ',I.DT_INICIO_VINCULO
+												,'; DT_FIM_VINCULO: ',I.DT_FIM_VINCULO
+												,'; FG_VINCULO_ATIVO: ',I.FG_VINCULO_ATIVO
+												,'; FG_REGISTRO_ATIVO: ',I.FG_REGISTRO_ATIVO
+												)
+											FROM INSERTED I
+											INNER JOIN SERVIDOR S ON S.ID_SERVIDOR=I.ID_SERVIDOR
+											INNER JOIN CARGO C ON C.ID_CARGO=I.ID_CARGO
+										))
+										
+							)
+		END;
+
+	IF @TP_OPERACAO='D'
+		BEGIN	
+			SET @DS_OPERACAO=(					 
+									(SELECT CONCAT(
+											'Exclusão física de vinculo de servidor. Dados:'
+												,'; ID_SERVIDOR: ',D.ID_SERVIDOR
+												,'; NM_SERVIDOR: ',S.NM_SERVIDOR
+												,'; ID_CARGO: ',D.ID_CARGO
+												,'; NM_CARGO: ',C.NM_CARGO
+												,'; DT_INICIO_VINCULO: ',D.DT_INICIO_VINCULO
+												,'; DT_FIM_VINCULO: ',D.DT_FIM_VINCULO
+												,'; FG_VINCULO_ATIVO: ',D.FG_VINCULO_ATIVO
+												,'; FG_REGISTRO_ATIVO: ',D.FG_REGISTRO_ATIVO
+											)
+								
+										FROM DELETED D
+										INNER JOIN SERVIDOR S ON S.ID_SERVIDOR=D.ID_SERVIDOR
+										INNER JOIN CARGO C ON C.ID_CARGO=D.ID_CARGO
+							)
+						)
+		
+		END;
+	EXEC InserirAuditoria @TP_OPERACAO,'LOTACAO_SERVIDOR',@DS_OPERACAO
+END
+GO

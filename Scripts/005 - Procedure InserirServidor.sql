@@ -2,7 +2,12 @@
 /*=====================================================*/
 /* -- Procedure utilizada para cadastro de servidor	 --*/
 /*=====================================================*/
+
 USE SERVIDOR_EFETIVO
+GO
+
+IF EXISTS (SELECT 1 FROM SYS.procedures WHERE NAME='InserirServidor')
+	DROP PROCEDURE InserirServidor
 GO
 CREATE PROCEDURE InserirServidor
 	@CD_SIAPE INT,
@@ -23,3 +28,4 @@ BEGIN
 END
 GO
 
+GRANT EXECUTE ON InserirServidor TO USR_SERVIDOREFETIVO

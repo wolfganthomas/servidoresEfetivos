@@ -1,3 +1,14 @@
+/*========================================================================*/
+/*  Autor do Script: Thomas Wolfgan			                  */
+/*  Data de criação: 21/09/2024				                  */
+/*  Finalidade do script:						  */
+/*     Criar views para consulta de lotação e vínculo de servidores	  */ 
+/*  Sumário do Script:                                                    */
+/*     1. Cria a view VW_SERVIDORES_LOTACOES                              */
+/*     2. Cria a view VW_SERVIVORES_VINCULOS                              */
+/*========================================================================*/
+
+
 USE SERVIDOR_EFETIVO
 GO
 CREATE VIEW VW_SERVIDORES_LOTACOES AS

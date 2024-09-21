@@ -119,7 +119,7 @@ BEGIN
 END
 GO
 /*=====================================================*/
-/* -- Trigger auditoria tabela SERVIDOR				 --*/
+/* -- Trigger auditoria tabela LOTACAO_SERVIDOR		 --*/
 /*=====================================================*/
 
 IF EXISTS(SELECT 1 FROM SYS.triggers WHERE NAME='TG_AUD_LOTACAOSERVIDOR')
@@ -175,7 +175,7 @@ BEGIN
 			SELECT @TP_OPERACAO
 					,GETDATE()
 					,SUSER_NAME()
-					,'SERVIDOR'
+					,'LOTACAO_SERVIDOR'
 					,CONCAT(
 							'Alteração de cadastro de servidor. ** Dados antes a alteração:'
 							,' ID_SERVIDOR: ',D.ID_SERVIDOR
@@ -206,7 +206,7 @@ BEGIN
 			SELECT @TP_OPERACAO
 					,GETDATE()
 					,SUSER_NAME()
-					,'SERVIDOR'
+					,'LOTACAO_SERVIDOR'
 					,CONCAT(
 							'Exclusão física de lotação de servidor. ** Dados:'
 							,' ID_SERVIDOR: ',D.ID_SERVIDOR
@@ -229,7 +229,7 @@ GO
 
 
 /*=====================================================*/
-/* -- Trigger auditoria tabela SERVIDOR				 --*/
+/* -- Trigger auditoria tabela VINCULO_SERVIDOR 	 --*/
 /*=====================================================*/
 
 IF EXISTS(SELECT 1 FROM SYS.triggers WHERE NAME='TG_AUD_VINCULOSERVIDOR')
@@ -263,7 +263,7 @@ BEGIN
 				@TP_OPERACAO
 				,GETDATE()
 				,SUSER_NAME()
-				,'LOTACAO_SERVIDOR'
+				,'VINCULO_SERVIDOR'
 				,CONCAT(
 						'Cadastro de vínculo de servidor realizado. Dados:'
 						,' ID_SERVIDOR: ',I.ID_SERVIDOR
@@ -285,7 +285,7 @@ BEGIN
 			SELECT @TP_OPERACAO
 					,GETDATE()
 					,SUSER_NAME()
-					,'SERVIDOR'
+					,'VINCULO_SERVIDOR'
 					,CONCAT(
 							'Alteração de vinculo de servidor. ** Dados antes a alteração:'
 							,' ID_SERVIDOR: ',D.ID_SERVIDOR
@@ -316,7 +316,7 @@ BEGIN
 			SELECT @TP_OPERACAO
 					,GETDATE()
 					,SUSER_NAME()
-					,'SERVIDOR'
+					,'VINCULO_SERVIDOR'
 					,CONCAT(
 							'Exclusão física de vinculo de servidor. ** Dados:'
 							,' ID_SERVIDOR: ',D.ID_SERVIDOR

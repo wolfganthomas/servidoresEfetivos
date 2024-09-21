@@ -1,9 +1,9 @@
 /*========================================================================*/
-/*  Autor do Script: Thomas Wolfgan						                  */
-/*  Data de criaÁ„o: 21/09/2024				                              */
-/*  Finalidade do script:											      */
-/*     Criar  Ìndices nas tabelas							              */ 
-/*  Sum·rio do Script:                                                    */
+/*  Autor do Script: Thomas Wolfgan			                  */
+/*  Data de cria√ß√£o: 21/09/2024				                  */
+/*  Finalidade do script:						  */
+/*     Criar  √≠ndices nas tabelas					  */ 
+/*  Sum√°rio do Script:                                                    */
 /*     1. Cria indices na tabela  LOTACAO_SERVIDOR                        */
 /*     2. Cria indices na tabela  VINCULO_SERVIDOR                        */
 /*========================================================================*/
@@ -26,7 +26,7 @@ CREATE UNIQUE NONCLUSTERED INDEX IX_VINCULOSERVIDOR_IDSERVIDOR ON DBO.VINCULO_SE
    WHERE FG_VINCULO_ATIVO=1
 go
 
--- Data de inÌcio do vinculo incluÌda porque a regra negocial demanda a ordenaÁ„o por este campo
+-- Data de in√≠cio do vinculo inclu√≠da porque a regra negocial demanda a ordena√ß√£o por este campo
 CREATE NONCLUSTERED INDEX IX_VINCULOSERVIDOR_IDCARGO_DTINICIOVINCULO ON DBO.VINCULO_SERVIDOR 
 (ID_CARGO ASC,DT_INICIO_VINCULO ASC)
 go

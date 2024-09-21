@@ -6,6 +6,9 @@
 /*  Sumário do Script:                                                    */
 /*     1. Carrega massa de dados nas tabelas			          */
 /*========================================================================*/
+
+USE SERVIDOR_EFETIVO
+GO
 -- Cargos
 INSERT INTO CARGO (NM_CARGO, FG_REGISTRO_ATIVO) 
 VALUES 
@@ -66,71 +69,110 @@ VALUES
 -- Vinculos
 INSERT INTO VINCULO_SERVIDOR (ID_SERVIDOR, ID_CARGO, DT_INICIO_VINCULO, FG_VINCULO_ATIVO, FG_REGISTRO_ATIVO)
 VALUES
-(1, 1, GETDATE(), 1, 1),
-(2, 2, GETDATE(), 1, 1),
-(3, 3, GETDATE(), 1, 1),
-(4, 4, GETDATE(), 1, 1),
-(5, 5, GETDATE(), 1, 1),
-(6, 6, GETDATE(), 1, 1),
-(7, 7, GETDATE(), 1, 1),
-(8, 8, GETDATE(), 1, 1),
-(9, 9, GETDATE(), 1, 1),
-(10, 10, GETDATE(), 1, 1),
-(11, 1, GETDATE(), 1, 1),
-(12, 2, GETDATE(), 1, 1),
-(13, 3, GETDATE(), 1, 1),
-(14, 4, GETDATE(), 1, 1),
-(15, 5, GETDATE(), 1, 1),
-(16, 6, GETDATE(), 1, 1),
-(17, 7, GETDATE(), 1, 1),
-(18, 8, GETDATE(), 1, 1),
-(19, 9, GETDATE(), 1, 1),
-(20, 10, GETDATE(), 1, 1),
-(21, 1, GETDATE(), 1, 1),
-(22, 2, GETDATE(), 1, 1),
-(23, 3, GETDATE(), 1, 1),
-(24, 4, GETDATE(), 1, 1),
-(25, 5, GETDATE(), 1, 1);
+(1, 1, '2020-01-06', 1, 1),
+(2, 2, '2020-01-06', 1, 1),
+(3, 3, '2020-01-06', 1, 1),
+(4, 4, '2021-02-01', 1, 1),
+(5, 5, '2021-02-01', 1, 1),
+(6, 6, '2021-02-01', 1, 1),
+(7, 7, '2021-02-01', 1, 1),
+(8, 8, '2021-02-01', 1, 1),
+(9, 9, '2023-08-07', 1, 1),
+(10, 10, '2023-08-07', 1, 1),
+(11, 1, '2023-08-07', 1, 1),
+(12, 2, '2023-08-07', 1, 1),
+(13, 3, '2023-08-07', 1, 1),
+(14, 4, '2023-08-07', 1, 1),
+(15, 5, '2023-08-07', 1, 1),
+(16, 6, '2023-08-07', 1, 1),
+(17, 7,'2024-01-08', 1, 1),
+(18, 8, '2024-01-08', 1, 1),
+(19, 9, '2024-01-08', 1, 1),
+(20, 10, '2024-01-08', 1, 1),
+(21, 1, '2024-01-08', 1, 1),
+(22, 2, '2024-01-08', 1, 1),
+(23, 3, '2024-01-08', 1, 1),
+(24, 4, '2024-01-08', 1, 1),
+(25, 5, '2024-01-08', 1, 1);
 
 -- Lotação
 INSERT INTO LOTACAO_SERVIDOR (ID_SERVIDOR, ID_SETOR, DT_INICIO_LOTACAO, FG_LOTACAO_ATIVA, FG_REGISTRO_ATIVO)
 VALUES
-(1, 1, GETDATE(), 1, 1),
-(2, 2, GETDATE(), 1, 1),
-(3, 3, GETDATE(), 1, 1),
-(4, 4, GETDATE(), 1, 1),
-(5, 5, GETDATE(), 1, 1),
-(6, 6, GETDATE(), 1, 1),
-(7, 7, GETDATE(), 1, 1),
-(8, 8, GETDATE(), 1, 1),
-(9, 9, GETDATE(), 1, 1),
-(10, 10, GETDATE(), 1, 1),
-(11, 1, GETDATE(), 1, 1),
-(12, 2, GETDATE(), 1, 1),
-(13, 3, GETDATE(), 1, 1),
-(14, 4, GETDATE(), 1, 1),
-(15, 5, GETDATE(), 1, 1),
-(16, 6, GETDATE(), 1, 1),
-(17, 7, GETDATE(), 1, 1),
-(18, 8, GETDATE(), 1, 1),
-(19, 9, GETDATE(), 1, 1),
-(20, 10, GETDATE(), 1, 1),
-(21, 1, GETDATE(), 1, 1),
-(22, 2, GETDATE(), 1, 1),
-(23, 3, GETDATE(), 1, 1),
-(24, 4, GETDATE(), 1, 1),
-(25, 5, GETDATE(), 1, 1);
+(1, 1, '2020-01-06', 1, 1),
+(2, 2, '2020-01-06', 1, 1),
+(3, 3, '2020-01-06', 1, 1),
+(4, 4, '2021-02-01', 1, 1),
+(5, 5, '2021-02-01', 1, 1),
+(6, 6, '2021-02-01', 1, 1),
+(7, 7, '2021-02-01', 1, 1),
+(8, 8, '2021-02-01', 1, 1),
+(9, 9, '2023-08-07', 1, 1),
+(10, 10, '2023-08-07', 1, 1),
+(11, 1, '2023-08-07', 1, 1),
+(12, 2, '2023-08-07', 1, 1),
+(13, 3,'2023-08-07', 1, 1),
+(14, 4, '2023-08-07', 1, 1),
+(15, 5, '2023-08-07', 1, 1),
+(16, 6, '2023-08-07', 1, 1),
+(17, 7, '2024-01-08', 1, 1),
+(18, 8, '2024-01-08', 1, 1),
+(19, 9, '2024-01-08', 1, 1),
+(20, 10, '2024-01-08', 1, 1),
+(21, 1, '2024-01-08', 1, 1),
+(22, 2, '2024-01-08', 1, 1),
+(23, 3, '2024-01-08', 1, 1),
+(24, 4, '2024-01-08', 1, 1),
+(25, 5, '2024-01-08', 1, 1);
 
 -- Simular mudança de cargo 
 
 UPDATE VINCULO_SERVIDOR
-SET ID_CARGO = (ID_CARGO % 10) + 1, DT_FIM_VINCULO = GETDATE(), FG_VINCULO_ATIVO = 0
-WHERE ID_SERVIDOR IN (6, 7, 8, 9, 10);
+	SET DT_FIM_VINCULO = '2024-01-21', FG_VINCULO_ATIVO = 0
+WHERE ID_SERVIDOR IN (6, 7, 8, 9, 10)
+
+
+INSERT INTO VINCULO_SERVIDOR VALUES
+(6,2,'2024-01-21',NULL,1,1)
+,(7,10,'2024-01-21',NULL,1,1)
+,(8,1,'2024-01-21',NULL,1,1)
+,(9,7,'2024-01-21',NULL,1,1)
+,(10,5,'2024-01-21',NULL,1,1)
 
 -- Simular mudança de setor
 
 UPDATE LOTACAO_SERVIDOR
-SET ID_SETOR = (ID_SETOR % 10) + 1, DT_FIM_LOTACAO = GETDATE(), FG_LOTACAO_ATIVA = 0
-WHERE ID_SERVIDOR IN (6, 7, 8, 9, 10);
+	SET  DT_FIM_LOTACAO ='2024-01-21', FG_LOTACAO_ATIVA = 0
+WHERE ID_SERVIDOR IN (6, 7, 8, 9, 10)
 
+INSERT INTO LOTACAO_SERVIDOR VALUES
+(6,1,'2024-01-21',NULL,1,1)
+,(7,10,'2024-01-21',NULL,1,1)
+,(8,8,'2024-01-21',NULL,1,1)
+,(9,7,'2024-01-21',NULL,1,1)
+,(10,9,'2024-01-21',NULL,1,1)
 
+-- Simular inativação de servidor
+UPDATE SERVIDOR
+	SET FG_REGISTRO_ATIVO=0
+WHERE ID_SERVIDOR IN(10,2);
+
+UPDATE VINCULO_SERVIDOR
+	SET DT_INICIO_VINCULO='2022-03-01'
+WHERE ID_SERVIDOR =2
+
+UPDATE VINCULO_SERVIDOR
+	SET DT_INICIO_VINCULO='2022-03-01',DT_FIM_VINCULO='2024-09-20'
+WHERE ID_SERVIDOR =2
+
+-- Alterar datas de operação na tabela de auditoria apenas para permitir uma melhor avaliação do Relatório de Log de Modificações
+----- Esse trecho precisa ser executado com usuário que possua privilégios elevados, dado que os usuários usr_servidorefetivo e usr_servidorefetivo_bi não podem alterar registros de auditoria
+WITH C_AUDITORIA AS(
+	SELECT ID_AUDITORIA
+			,DT_OPERACAO
+			,DATEADD(DAY, 
+               ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2024-01-01', GETDATE()), 
+               '2024-01-01') DT_ALEATORIA
+	FROM AUDITORIA
+)
+
+UPDATE C_AUDITORIA SET DT_OPERACAO=DT_ALEATORIA

@@ -207,14 +207,14 @@ CREATE TABLE DBO.SERVIDOR (
       CONSTRAINT CK_SERVIDOR_CDSEXO CHECK (TP_SEXO IN ('F','M')),
    DT_NASCIMENTO        DATE                 NOT NULL,
    NR_CPF               VARCHAR(11)          NOT NULL,
+   DT_EFETIVACAO        DATE                 NOT NULL,
+   DT_EXONERACAO        DATE                 NULL,
    FG_REGISTRO_ATIVO    BIT                  NOT NULL,
-   CONSTRAINT PK_SERVIDOR PRIMARY KEY (ID_SERVIDOR)
+   CONSTRAINT PK_SERVIDOR PRIMARY KEY (ID_SERVIDOR),
+   CONSTRAINT UK_SERVIDOR_CDSIAPE UNIQUE (CD_SIAPE)
 )
 go
 
-ALTER TABLE DBO.SERVIDOR
-   ADD CONSTRAINT UK_SERVIDOR_CDSIAPE UNIQUE (CD_SIAPE)
-go
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description',  
    'Armazena os registros de servidores.', 
@@ -266,6 +266,18 @@ EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description',
    'schema', 'DBO', 'table', 'SERVIDOR', 'column', 'NR_CPF'
 go
 
+EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
+   'Data em que o servidor foi efetivado',
+   'schema', 'DBO', 'table', 'SERVIDOR', 'column', 'DT_EFETIVACAO'
+go
+
+
+
+
+EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
+   'Data em que o servidor foi exonerado',
+   'schema', 'DBO', 'table', 'SERVIDOR', 'column', 'DT_EXONERACAO'
+go
 
 
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 

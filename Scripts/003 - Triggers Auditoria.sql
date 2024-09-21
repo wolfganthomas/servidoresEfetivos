@@ -57,6 +57,8 @@ BEGIN
 						,'; TP_SEXO: ',I.TP_SEXO
 						,'; DT_NASCIMENTO: ',I.DT_NASCIMENTO
 						,'; NR_CPF: ',I.NR_CPF
+                        ,'; DT_EFETIVACAO: ',I.DT_EFETIVACAO
+                        ,'; DT_EXONERACAO: ',I.DT_EXONERACAO
 						,'; FG_REGISTRO_ATIVO: ',I.FG_REGISTRO_ATIVO
 					)
 			FROM INSERTED I
@@ -78,6 +80,8 @@ BEGIN
 							,'; TP_SEXO: ',D.TP_SEXO
 							,'; DT_NASCIMENTO: ',D.DT_NASCIMENTO
 							,'; NR_CPF: ',D.NR_CPF
+                            ,'; DT_EFETIVACAO: ',D.DT_EFETIVACAO
+                            ,'; DT_EXONERACAO: ',D.DT_EXONERACAO
 							,'; FG_REGISTRO_ATIVO: ',D.FG_REGISTRO_ATIVO
 
 							,'; ** Dados após a alteração:'
@@ -87,6 +91,8 @@ BEGIN
 							,'; TP_SEXO: ',I.TP_SEXO
 							,'; DT_NASCIMENTO: ',I.DT_NASCIMENTO
 							,'; NR_CPF: ',I.NR_CPF
+                            ,'; DT_EFETIVACAO: ',I.DT_EFETIVACAO
+                            ,'; DT_EXONERACAO: ',I.DT_EXONERACAO
 							,'; FG_REGISTRO_ATIVO: ',I.FG_REGISTRO_ATIVO				
 						)
 			FROM DELETED D

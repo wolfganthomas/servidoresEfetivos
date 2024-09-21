@@ -6,6 +6,9 @@
 /*  Sumário do Script:                                                    */
 /*     1. Carrega massa de dados nas tabelas			          */
 /*========================================================================*/
+
+USE SERVIDOR_EFETIVO
+GO
 -- Cargos
 INSERT INTO CARGO (NM_CARGO, FG_REGISTRO_ATIVO) 
 VALUES 
@@ -124,7 +127,7 @@ VALUES
 -- Simular mudança de cargo 
 
 UPDATE VINCULO_SERVIDOR
-SET ID_CARGO = DT_FIM_VINCULO = '2024-01-21', FG_VINCULO_ATIVO = 0
+	SET DT_FIM_VINCULO = '2024-01-21', FG_VINCULO_ATIVO = 0
 WHERE ID_SERVIDOR IN (6, 7, 8, 9, 10)
 
 
@@ -138,7 +141,7 @@ INSERT INTO VINCULO_SERVIDOR VALUES
 -- Simular mudança de setor
 
 UPDATE LOTACAO_SERVIDOR
-SET  DT_FIM_LOTACAO ='2024-01-21', FG_LOTACAO_ATIVA = 0
+	SET  DT_FIM_LOTACAO ='2024-01-21', FG_LOTACAO_ATIVA = 0
 WHERE ID_SERVIDOR IN (6, 7, 8, 9, 10)
 
 INSERT INTO LOTACAO_SERVIDOR VALUES
@@ -161,3 +164,15 @@ UPDATE VINCULO_SERVIDOR
 	SET DT_INICIO_VINCULO='2022-03-01',DT_FIM_VINCULO='2024-09-20'
 WHERE ID_SERVIDOR =2
 
+-- Alterar datas de operação na tabela de auditoria apenas para permitir uma melhor avaliação do Relatório de Log de Modificações
+
+WITH C_AUDITORIA AS(
+	SELECT ID_AUDITORIA
+			,DT_OPERACAO
+			,DATEADD(DAY, 
+               ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2024-01-01', GETDATE()), 
+               '2024-01-01') DT_ALEATORIA
+	FROM AUDITORIA
+)
+
+UPDATE C_AUDITORIA SET DT_OPERACAO=DT_ALEATORIA

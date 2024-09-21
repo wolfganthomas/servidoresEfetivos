@@ -1,9 +1,9 @@
 /*========================================================================*/
-/*  Autor do Script: Thomas Wolfgan						                  */
-/*  Data de criaÁ„o: 21/09/2024				                              */
-/*  Finalidade do script:											      */
-/*     Criar triggers de auditoria de tabelas							  */ 
-/*  Sum·rio do Script:                                                    */
+/*  Autor do Script: Thomas Wolfgan					  */
+/*  Data de cria√ß√£o: 21/09/2024				                  */
+/*  Finalidade do script:						  */
+/*     Criar triggers de auditoria de tabelas				  */ 
+/*  Sum√°rio do Script:                                                    */
 /*     1. Cria trigger de auditoria para a tabela SERVIDOR                */
 /*     2. Cria trigger de auditoria para a tabela LOTACAO_SERVIDOR        */
 /*     3. Cria trigger de auditoria para a tabela VINCULO_SERVIDOR        */
@@ -11,7 +11,7 @@
 
 
 /*=====================================================*/
-/* -- Trigger auditoria tabela SERVIDOR				 --*/
+/* -- Trigger auditoria tabela SERVIDOR		     --*/
 /*=====================================================*/
 
 USE SERVIDOR_EFETIVO
@@ -35,7 +35,7 @@ BEGIN
 
 	
 
-    -- Identificar a operaÁ„o realizada
+    -- Identificar a opera√ß√£o realizada
      IF  (EXISTS(SELECT 1 FROM DELETED))
           SET @TP_OPERACAO = CASE
                                    WHEN EXISTS(SELECT 1 FROM INSERTED) THEN 'U' -- UPDATE
@@ -71,7 +71,7 @@ BEGIN
 					,SUSER_NAME()
 					,'SERVIDOR'
 					,CONCAT(
-							'AlteraÁ„o de cadastro de servidor. ** Dados antes a alteraÁ„o:'
+							'Altera√ß√£o de cadastro de servidor. ** Dados antes a altera√ß√£o:'
 							,'ID_SERVIDOR: ',D.ID_SERVIDOR
 							,'; CD_SIAPE: ',D.CD_SIAPE
 							,'; NM_SERVIDOR: ',D.NM_SERVIDOR
@@ -80,7 +80,7 @@ BEGIN
 							,'; NR_CPF: ',D.NR_CPF
 							,'; FG_REGISTRO_ATIVO: ',D.FG_REGISTRO_ATIVO
 
-							,'; ** Dados apÛs a alteraÁ„o:'
+							,'; ** Dados ap√≥s a altera√ß√£o:'
 							,' ID_SERVIDOR: ',I.ID_SERVIDOR
 							,'; CD_SIAPE: ',I.CD_SIAPE
 							,'; NM_SERVIDOR: ',I.NM_SERVIDOR
@@ -92,7 +92,7 @@ BEGIN
 			FROM DELETED D
 			INNER JOIN INSERTED I ON I.ID_SERVIDOR=D.ID_SERVIDOR
 		END;
--- Como as tabelas possuem flag para exclus„o lÛgica, os usu·rios de aplicaÁ„o n„o receberam permiss„o DELETE, mas por precauÁ„o a h· previs„o de auditoria para essa operaÁ„o, conforme a seguir:
+-- Como as tabelas possuem flag para exclus√£o l√≥gica, os usu√°rios de aplica√ß√£o n√£o receberam permiss√£o DELETE, mas por precau√ß√£o a h√° previs√£o de auditoria para essa opera√ß√£o, conforme a seguir:
 	IF @TP_OPERACAO='D'
 		BEGIN	
 			INSERT INTO AUDITORIA 
@@ -101,7 +101,7 @@ BEGIN
 					,SUSER_NAME()
 					,'SERVIDOR'
 					,CONCAT(
-							'Exclus„o fÌsica de cadastro de servidor. ** Dados:'
+							'Exclus√£o f√≠sica de cadastro de servidor. ** Dados:'
 							,'ID_SERVIDOR: ',D.ID_SERVIDOR
 							,'; CD_SIAPE: ',D.CD_SIAPE
 							,'; NM_SERVIDOR: ',D.NM_SERVIDOR
@@ -140,7 +140,7 @@ BEGIN
 
 	
 
-    -- Identificar a operaÁ„o realizada
+    -- Identificar a opera√ß√£o realizada
      IF  (EXISTS(SELECT 1 FROM DELETED))
           SET @TP_OPERACAO = CASE
                                    WHEN EXISTS(SELECT 1 FROM INSERTED) THEN 'U' -- UPDATE
@@ -155,7 +155,7 @@ BEGIN
 				,SUSER_NAME()
 				,'LOTACAO_SERVIDOR'
 				,CONCAT(
-						'Cadastro de lotaÁ„o de servidor realizado. Dados:'
+						'Cadastro de lota√ß√£o de servidor realizado. Dados:'
 						,' ID_SERVIDOR: ',I.ID_SERVIDOR
 						,'; ID_SETOR ',I.ID_SETOR
 						,'; SG_SETOR: ',ST.SG_SETOR
@@ -177,7 +177,7 @@ BEGIN
 					,SUSER_NAME()
 					,'SERVIDOR'
 					,CONCAT(
-							'AlteraÁ„o de cadastro de servidor. ** Dados antes a alteraÁ„o:'
+							'Altera√ß√£o de cadastro de servidor. ** Dados antes a altera√ß√£o:'
 							,' ID_SERVIDOR: ',D.ID_SERVIDOR
 							,'; ID_SETOR ',D.ID_SETOR
 							,'; SG_SETOR: ',STD.SG_SETOR
@@ -199,7 +199,7 @@ BEGIN
 			INNER JOIN INSERTED I ON I.ID_SERVIDOR=D.ID_SERVIDOR
 			INNER JOIN SETOR STI ON STI.ID_SETOR=D.ID_SETOR
 		END;
--- Como as tabelas possuem flag para exclus„o lÛgica, os usu·rios de aplicaÁ„o n„o receberam permiss„o DELETE, mas por precauÁ„o a h· previs„o de auditoria para essa operaÁ„o, conforme a seguir:
+-- Como as tabelas possuem flag para exclus√£o l√≥gica, os usu√°rios de aplica√ß√£o n√£o receberam permiss√£o DELETE, mas por precau√ß√£o a h√° previs√£o de auditoria para essa opera√ß√£o, conforme a seguir:
 	IF @TP_OPERACAO='D'
 		BEGIN	
 			INSERT INTO AUDITORIA 
@@ -208,7 +208,7 @@ BEGIN
 					,SUSER_NAME()
 					,'SERVIDOR'
 					,CONCAT(
-							'Exclus„o fÌsica de lotaÁ„o de servidor. ** Dados:'
+							'Exclus√£o f√≠sica de lota√ß√£o de servidor. ** Dados:'
 							,' ID_SERVIDOR: ',D.ID_SERVIDOR
 							,'; ID_SETOR ',D.ID_SETOR
 							,'; SG_SETOR: ',ST.SG_SETOR
@@ -250,7 +250,7 @@ BEGIN
 
 	
 
-    -- Identificar a operaÁ„o realizada
+    -- Identificar a opera√ß√£o realizada
      IF  (EXISTS(SELECT 1 FROM DELETED))
           SET @TP_OPERACAO = CASE
                                    WHEN EXISTS(SELECT 1 FROM INSERTED) THEN 'U' -- UPDATE
@@ -265,7 +265,7 @@ BEGIN
 				,SUSER_NAME()
 				,'LOTACAO_SERVIDOR'
 				,CONCAT(
-						'Cadastro de vÌnculo de servidor realizado. Dados:'
+						'Cadastro de v√≠nculo de servidor realizado. Dados:'
 						,' ID_SERVIDOR: ',I.ID_SERVIDOR
 						,'; ID_CARGO ',I.ID_CARGO
 						,'; NM_CARGO: ',C.NM_CARGO
@@ -287,7 +287,7 @@ BEGIN
 					,SUSER_NAME()
 					,'SERVIDOR'
 					,CONCAT(
-							'AlteraÁ„o de vinculo de servidor. ** Dados antes a alteraÁ„o:'
+							'Altera√ß√£o de vinculo de servidor. ** Dados antes a altera√ß√£o:'
 							,' ID_SERVIDOR: ',D.ID_SERVIDOR
 							,'; ID_CARGO ',D.ID_CARGO
 							,'; NM_CARGO: ',CD.NM_CARGO
@@ -309,7 +309,7 @@ BEGIN
 			INNER JOIN INSERTED I ON I.ID_SERVIDOR=D.ID_SERVIDOR
 			INNER JOIN CARGO CI ON CI.ID_CARGO=D.ID_CARGO
 		END;
--- Como as tabelas possuem flag para exclus„o lÛgica, os usu·rios de aplicaÁ„o n„o receberam permiss„o DELETE, mas por precauÁ„o a h· previs„o de auditoria para essa operaÁ„o, conforme a seguir:
+-- Como as tabelas possuem flag para exclus√£o l√≥gica, os usu√°rios de aplica√ß√£o n√£o receberam permiss√£o DELETE, mas por precau√ß√£o a h√° previs√£o de auditoria para essa opera√ß√£o, conforme a seguir:
 	IF @TP_OPERACAO='D'
 		BEGIN	
 			INSERT INTO AUDITORIA 
@@ -318,7 +318,7 @@ BEGIN
 					,SUSER_NAME()
 					,'SERVIDOR'
 					,CONCAT(
-							'Exclus„o fÌsica de vinculo de servidor. ** Dados:'
+							'Exclus√£o f√≠sica de vinculo de servidor. ** Dados:'
 							,' ID_SERVIDOR: ',D.ID_SERVIDOR
 							,'; ID_CARGO ',D.ID_CARGO
 							,'; NM_CARGO: ',C.NM_CARGO

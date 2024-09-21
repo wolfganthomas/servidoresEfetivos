@@ -165,7 +165,7 @@ UPDATE VINCULO_SERVIDOR
 WHERE ID_SERVIDOR =2
 
 -- Alterar datas de operação na tabela de auditoria apenas para permitir uma melhor avaliação do Relatório de Log de Modificações
-
+----- Esse trecho precisa ser executado com usuário que possua privilégios elevados, dado que os usuários usr_servidorefetivo e usr_servidorefetivo_bi não podem alterar registros de auditoria
 WITH C_AUDITORIA AS(
 	SELECT ID_AUDITORIA
 			,DT_OPERACAO
